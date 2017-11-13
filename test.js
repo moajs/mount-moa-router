@@ -38,6 +38,7 @@ router.get('/', (ctx, next) => {
 
 var a = require('./routes/users')
 
+a.tree.prefix = '/users/'
 // console.dir(a)
 
 // console.dir(a.tree)
@@ -69,7 +70,7 @@ router2.get('/', (ctx, next) => {
   ctx.body = {'path': 'root'}
 })
 
-router2.on('GET', '/test', (ctx, next) => {
+router2.on('GET', '/users/test', (ctx, next) => {
   ctx.body = {'hello': 'world'}
 })
 

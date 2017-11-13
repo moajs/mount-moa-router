@@ -5,7 +5,12 @@ router.get('/', (ctx, next) => {
 })
 
 router.get('/users', (ctx, next) => {
-  ctx.body = {'path': 'root'}
+  ctx.body = {'path': 'users'}
+})
+
+
+router.get('/users/alfred', (ctx, next) => {
+  ctx.body = {'path': 'users'}
 })
 
 module.exports = router
