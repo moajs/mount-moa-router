@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/moajs/mount-moa-router#readme",
   "dependencies": {
-    "moa-router": "^1.7.4"
+    "moa-router": "^1.7.4",
+    "require-directory": "^2.1.1"
   },
   "devDependencies": {
     "koa": "^2.4.1"
