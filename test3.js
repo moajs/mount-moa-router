@@ -19,7 +19,7 @@ routeruser.get('/', (ctx, next) => {
 })
 
 routeruser.get('/list', (ctx, next) => {
-    ctx.body = {'path': 'users'}
+    ctx.body = {'path': '/list'}
   })
   
 console.log(dump(routeruser ,{pretty: true, depth:10}));
@@ -36,7 +36,7 @@ router.get('/', (ctx, next) => {
 })
 
 router.get('/users/list', (ctx, next) => {
-  ctx.body = {'path': 'users'}
+  ctx.body = {'path': 'users/users/list'}
 })
 
 var arr = routeruser.tree.children
@@ -46,8 +46,8 @@ arr = arr.concat(router.tree.children)
 // console.log(routeruser.tree.children)
 console.log(arr)
 routeruser.tree.children=arr//.concat(router.tree.children)
-
-routeruser.tree.children = router.tree.children
+routeruser.tree.numberOfChildren = arr.length
+// routeruser.tree.children = router.tree.children
 
 console.log(routeruser.tree.children)
 // console.log(dump(a ,{pretty: true, depth:10}));
