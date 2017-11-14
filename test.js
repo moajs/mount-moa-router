@@ -24,7 +24,7 @@ var routes = requireDirectory(module, './routes');
 console.log(routes)
 
 
-const router = require('moa-router')()
+var router = require('moa-router')()
 
 router.get('/', (ctx, next) => {
   ctx.body = {'path': 'root'}
@@ -38,20 +38,35 @@ router.get('/', (ctx, next) => {
 
 var a = require('./routes/users')
 
-a.tree.prefix = '/users/'
+// a.tree.prefix = '/users/'
 // console.dir(a)
 
 // console.dir(a.tree)
 
 // console.dir(a.tree.children)
 
-router.tree.children = a.tree.children
 
-router.tree.numberOfChildren = a.tree.children.length
 
-router.tree.label = a.tree.children.length
+var routeruser = require('moa-router')()
+routeruser.tree.prefix = '/users/'
 
-router.tree.prefix = "/"
+
+routeruser.tree.children = a.tree.children
+
+routeruser.tree.numberOfChildren = a.tree.children.length
+
+routeruser.tree.label = a.tree.children.length
+
+
+router.tree.children = routeruser.tree.children
+
+router.tree.numberOfChildren = routeruser.tree.children.length
+
+router.tree.label = routeruser.tree.children.length
+
+
+
+// router.tree.prefix = '/users/'
 
 // console.dir(router)
 
@@ -74,7 +89,17 @@ router2.on('GET', '/users/test', (ctx, next) => {
   ctx.body = {'hello': 'world'}
 })
 
+
+const dump = require('dumpster').dump;
+ 
+console.log(dump(router2 ,{pretty: true, depth:10}));
+
+
 app.use(router.routes())
+
+
+console.log(dump(router ,{pretty: true, depth:10}));
+
 
 app.use(async function (ctx, next) {
   ctx.body = "default"

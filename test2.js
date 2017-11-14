@@ -14,12 +14,20 @@ var a = require('./routes/users')
 
 
 const dump = require('dumpster').dump;
-let obj = {
-  sample: {
-    object: 1
-  }
-}
-console.log(dump(a,{pretty: true, depth:10}));
+
+
+
+
+var routeruser = require('moa-router')()
+
+routeruser.tree.prefix = '/users/'
+
+routeruser.tree.children = a.tree.children
+
+
+// console.log(dump(a ,{pretty: true, depth:10}));
+
+console.log(dump(routeruser ,{pretty: true, depth:10}));
 
 
 // for (var key in a.tree) {

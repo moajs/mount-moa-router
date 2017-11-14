@@ -9,7 +9,7 @@ router.get('/users', (ctx, next) => {
 })
 
 
-router.get('/users/alfred', (ctx, next) => {
+router.get('/alfred', (ctx, next) => {
   ctx.body = {'path': 'users'}
 })
 
