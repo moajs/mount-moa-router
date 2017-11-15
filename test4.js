@@ -1,113 +1,53 @@
-const dump = require('dumpster').dump;
+// var dirw = require('dirw');
 
-var routeruser = require('moa-router')()
-
-routeruser.get('/', (ctx, next) => {
-    ctx.body = {'path': 'root'}
-})
-
-routeruser.get('/list', (ctx, next) => {
-    ctx.body = {'path': '/list'}
-  })
-  
-// console.log(dump(routeruser ,{pretty: true, depth:10}));
-
-routeruser.tree.prefix = '/users/'
+// dirw.walk('./routes', 0, handleFile);
 
 const router = require('moa-router')()
 
-router.get('/', (ctx, next) => {
-  ctx.body = {'path': 'root'}
-})
 
-router.get('/users/list', (ctx, next) => {
-  ctx.body = {'path': 'users/users/list'}
-})
-
-var arr = routeruser.tree.children
-
-arr = arr.concat(router.tree.children)
-// console.log(router.tree.children)
-// console.log(routeruser.tree.children)
-// console.log(arr)
-routeruser.tree.children=arr//.concat(router.tree.children)
-routeruser.tree.numberOfChildren = arr.length
-// routeruser.tree.children = router.tree.children
-
-// console.log(routeruser.tree.children)
-// // console.log(dump(a ,{pretty: true, depth:10}));
-
-// console.log(dump(routeruser ,{pretty: true, depth:10}));
+router.forceRegister = true
 
 
-const http = require('http')
-const Koa = require('koa')
-const app = new Koa()
-
- 
+var walk = require('walk'),
+  fs = require('fs'),
+  walker;
 
 
+// module.exports =
+ function a(){
+  walker = walk.walk("./routes", {});
   
-// app.use(routeruser.routes())
-
-// app.listen(3000)
-
-
-var requireDirectory = require('require-directory');
-var routes = requireDirectory(module, './routes');
-
-// console.log(routes.keys)
-
-module.exports =  all = dddd (routes)
-
-// console.dir(all)
-
-
-
-var ssss = []
-function dddd (routes, prefix){
-  if (!prefix) prefix = '/'
-  var re = []
-  for (var k in routes) {
-    var path = '';
-    console.log(prefix + '/' + k)
+  walker.on("file", function (root, fileStats, next) {  
+    var path = root + '/' + fileStats.name;
   
-    // if(typeof routes[k].stack == 'object') {
+    if (/js$/.test(path)) {
+      console.log(path)
   
-    // }
+      var prefix = path.replace('./routes', '').replace('.js', '')
   
-    if(routes[k].type !== 'koa'){
-      var subRe = dddd (routes[k], k)
-      // console.log(subRe)
-      re = re.concat(subRe)
-      // console.log(re)
-    } else {
-      // var obj = aaaa(routes[k], prefix)
+      console.log(prefix)
+  
+      var _router = require(path)
+      // users.forceRegister = true
+      _router.prefix = prefix
 
-      var router = require('moa-router')()
-      router.prefix = prefix + '/' + k
-      router.tree.children = routes[k].tree.children
-
-      re.push( {
-        obj: router,
-        key: prefix + '/' + k
-      })
+      router.meta = _router.meta
+      next();
     }
-  }
+  });
+  
+  walker.on("errors", function (root, nodeStatsArray, next) {
+    next();
+  });
 
-  return re
+  return new Promise(function (resolve, reject) {
+    walker.on("end", function () {
+      console.log("all done");
+      require('log-n')(router.meta)
+      resolve(router.routes())
+    });
+  })
 }
 
-function aaaa(r, prefix){
-  // console.log(r)
-  
-  return {
-      key: prefix,
-      obj: r
-    }
-}
 
-// console.log(routes_arr)
-
-
-// console.log(dump(all ,{pretty: true, depth:10}));
+a()
