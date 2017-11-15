@@ -7,7 +7,24 @@ router2.on('GET', '/users/test', (ctx, next) => {
   ctx.body = {'hello': 'world'}
 })
 
-require('log-n')(router2)
+router2.forceRegister = true
+
+router2.prefix = '/api'
+
+
+
+var users = require('./routes/index')
+// users.forceRegister = true
+// users.prefix = "/user"
+
+// console.log(typeof users.meta)
+// console.log(users.meta)
+
+
+router2.meta = users.meta
+
+
+// require('log-n')(router2.meta)
 
 const http = require('http')
 const Koa = require('koa')
