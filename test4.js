@@ -56,9 +56,9 @@ const app = new Koa()
 var requireDirectory = require('require-directory');
 var routes = requireDirectory(module, './routes');
 
-console.log(routes.keys)
+// console.log(routes.keys)
 
-var all = dddd (routes)
+module.exports =  all = dddd (routes)
 
 // console.dir(all)
 
@@ -83,8 +83,13 @@ function dddd (routes, prefix){
       // console.log(re)
     } else {
       // var obj = aaaa(routes[k], prefix)
+
+      var router = require('moa-router')()
+      router.prefix = prefix + '/' + k
+      router.tree.children = routes[k].tree.children
+
       re.push( {
-        obj: routes[k],
+        obj: router,
         key: prefix + '/' + k
       })
     }
@@ -94,7 +99,7 @@ function dddd (routes, prefix){
 }
 
 function aaaa(r, prefix){
-  console.log(r)
+  // console.log(r)
   
   return {
       key: prefix,
@@ -104,4 +109,5 @@ function aaaa(r, prefix){
 
 // console.log(routes_arr)
 
-console.log(dump(all ,{pretty: true, depth:10}));
+
+// console.log(dump(all ,{pretty: true, depth:10}));

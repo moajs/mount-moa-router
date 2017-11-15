@@ -18,12 +18,12 @@
   },
   "homepage": "https://github.com/moajs/mount-moa-router#readme",
   "dependencies": {
+    "log-n": "^1.0.1",
     "moa-router": "^1.7.4",
     "require-directory": "^2.1.1"
   },
   "devDependencies": {
     "circular-json": "^0.4.0",
-    "dumpster": "^0.1.1",
     "koa": "^2.4.1"
   }
 }
