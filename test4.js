@@ -50,4 +50,17 @@ var walk = require('walk'),
 }
 
 
-a()
+
+
+
+const http = require('http')
+const Koa = require('koa')
+const app = new Koa()
+
+a().then(function(r){
+  app.use(router.routes())
+})
+
+
+app.listen(3000)
+
