@@ -21,7 +21,12 @@
     "dirw": "^1.0.3",
     "log-n": "^1.0.1",
     "moa-router": "file:../moa-router",
+<<<<<<< HEAD
     "require-directory": "^2.1.1"
+=======
+    "require-directory": "^2.1.1",
+    "walk": "^2.3.9"
+>>>>>>> 423a8b3eea68ba0a0f20685aeaf40e25edbc8fd4
   },
   "devDependencies": {
     "circular-json": "^0.4.0",

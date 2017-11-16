@@ -1,31 +1,37 @@
+
+const router2 = require('moa-router')()
+router2.get('/', (ctx, next) => {
+  ctx.body = {'path': 'root'}
+})
+
+router2.on('GET', '/users/test', (ctx, next) => {
+  ctx.body = {'hello': 'world'}
+})
+
+router2.forceRegister = true
+
+router2.prefix = '/api'
+
+
+
+var users = require('./routes/index')
+// users.forceRegister = true
+// users.prefix = "/user"
+
+// console.log(typeof users.meta)
+// console.log(users.meta)
+
+
+router2.meta = users.meta
+
+
+// require('log-n')(router2.meta)
+
 const http = require('http')
 const Koa = require('koa')
 const app = new Koa()
 
-var dirw = require('dirw');
-
-dirw.walk('./routes', 0, handleFile);
-
-function handleFile(path, floor) {
-  if (/js$/.test(path)) {
-    console.log(path)
-
-    var prefix = path.replace('./routes', '').replace('.js', '')
-    console.log(prefix)
-
-    var router = require(path)
-    router.tree.prefix = prefix
-
-
-    require('log-n')(router)
-
-    // require('log-n')(routeruser);
-
-
-    app.use(router.routes())
-
-  }
-  // 
-}
+app.use(router2.routes())
 
 app.listen(3000)
+
