@@ -1,54 +1,25 @@
-var routeruser = require('moa-router')()
-
-
-routeruser.tree.prefix = '/users/'
-
-
-const router = require('./routes/api/users')
-
-require('log-n')(router)
-
-wrap(routeruser, '/api/', router)
-
-function wrap(parent, prefix, router) {
-  var empty = require('moa-router')()
-  empty.tree.prefix = prefix
-
-  router.tree.prefix = prefix
-
-  var arr = parent.tree.children
-
-  arr = arr.concat(router.tree)
-  console.log(router)
-
-  empty.tree.children = arr //.concat(router.tree.children)
-  empty.tree.numberOfChildren = arr.length
-
-  require('log-n')(empty);
-
-  var all = empty.tree.children
-  console.log(all)
-
-
-  console.log(parent.tree.children)
-
-
-  parent.tree.children = all.concat(parent.tree.children)
-  parent.tree.numberOfChildren = all.length
-
-
-  require('log-n')(parent);
-
-}
 
 const http = require('http')
 const Koa = require('koa')
 const app = new Koa()
 
+const router = require('./routes/api/')
+router.tree.prefix = '/api/'
+
+
+require('log-n')(router)
 
 // require('log-n')(routeruser);
 
 
-app.use(routeruser.routes())
+
+const router2 = require('./routes/')
+router2.tree.prefix = '/'
+
+app.use(router2.routes())
+require('log-n')(router2)
+
+app.use(router.routes())
+
 
 app.listen(3000)

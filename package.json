@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/moajs/mount-moa-router#readme",
   "dependencies": {
+    "dirw": "^1.0.3",
     "log-n": "^1.0.1",
-    "moa-router": "^1.7.4",
+    "moa-router": "file:../moa-router",
     "require-directory": "^2.1.1"
   },
   "devDependencies": {

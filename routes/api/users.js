@@ -4,7 +4,7 @@ router.get('/', (ctx, next) => {
   ctx.body = {'path': 'root'}
 })
 
-router.get('/users/list', (ctx, next) => {
+router.get('/list', (ctx, next) => {
   ctx.body = {'path': 'users'}
 })
 

@@ -1,66 +1,68 @@
 var a = require('./routes/users')
 
-// a.tree.prefix = '/users/'
+// // a.tree.prefix = '/users/'
 
-// console.log( a.tree)
-// console.log(typeof a.tree.children)
+// // console.log( a.tree)
+// // console.log(typeof a.tree.children)
 
-// console.dir(a.tree.children)
+// // console.dir(a.tree.children)
 
-// console.dir(a.tree.children[0])
-
-
-// console.dir(a.tree.children[0].children)
+// // console.dir(a.tree.children[0])
 
 
-const dump = require('dumpster').dump;
+// // console.dir(a.tree.children[0].children)
+
+
+// const dump = require('dumpster').dump;
 
 
 
 
-var routeruser = require('moa-router')()
+// var routeruser = require('moa-router')()
 
-routeruser.tree.prefix = '/users/'
+// routeruser.tree.prefix = '/users/'
 
-routeruser.tree.children = a.tree.children
-
-
-// console.log(dump(a ,{pretty: true, depth:10}));
-
-console.log(dump(routeruser ,{pretty: true, depth:10}));
+// routeruser.tree.children = a.tree.children
 
 
-// for (var key in a.tree) {
+// // console.log(dump(a ,{pretty: true, depth:10}));
+
+// console.log(dump(routeruser ,{pretty: true, depth:10}));
+
+
+// // for (var key in a.tree) {
   
-//   var item = a.tree[key]
+// //   var item = a.tree[key]
 
-//   console.log(item)
-// }
+// //   console.log(item)
+// // }
 
 
-// for (var key in a.tree.children) {
+// // for (var key in a.tree.children) {
   
-//   var item = a.tree[key]
+// //   var item = a.tree[key]
 
-//   console.log(item)
-// }
+// //   console.log(item)
+// // }
 
-// function decorator(obj, prefix){
-//   console.dir('-------------------------------------------------')
-//   console.dir(obj)
+// // function decorator(obj, prefix){
+// //   console.dir('-------------------------------------------------')
+// //   console.dir(obj)
 
-//   for (var key in obj) {
+// //   for (var key in obj) {
     
-//     var item = obj[key]
+// //     var item = obj[key]
 
-//     decorator(item, prefix + '/' + item.prefix)
-//   }
-//   // obj.children.forEach(function (item) {
-//   //   decorator(item.children, prefix + '/' + item.prefix)
-//   // })
-// }
+// //     decorator(item, prefix + '/' + item.prefix)
+// //   }
+// //   // obj.children.forEach(function (item) {
+// //   //   decorator(item.children, prefix + '/' + item.prefix)
+// //   // })
+// // }
 
-// console.log(a.tree.children)
+// // console.log(a.tree.children)
 
 
-// decorator(a.tree, '/users')
+// // decorator(a.tree, '/users')
+
+console.log(a)
