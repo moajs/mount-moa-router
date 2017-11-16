@@ -65,9 +65,9 @@
 
 // // decorator(a.tree, '/users')
 
-<<<<<<< HEAD
+
 console.log(a)
-=======
+
 
 var users = require('./routes/index')
 users.forceRegister = true
@@ -76,4 +76,4 @@ users.prefix = "/user"
 console.log(typeof users.meta)
 console.log(users.meta)
 require('log-n')(users)
->>>>>>> 423a8b3eea68ba0a0f20685aeaf40e25edbc8fd4
+
